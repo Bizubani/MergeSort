@@ -1,6 +1,8 @@
 /*Implementation of mergesort which can be used to sort an integer array  and also used to count inversions in an array*/
 #include <stdlib.h>
+#include <stdio.h>
 #include "mergesort.h"
+
 
 
 // do the merging of the split arrays in linear time, counting inversion
@@ -50,19 +52,22 @@
 		 else if(right[rightPosition] < left[leftPosition]){
 			 intArray[mergeCount] = right[rightPosition];
 			 inversionCount += leftSize - leftPosition;
+			 
 			 rightPosition++;
 		 }
 	 }
 	 free(left); // deallocate the memory for the left sub array
 	 free(right); // deallocate the memory for the right sub array
+	 
+
 	 return inversionCount;
 }
 
 //return a pointer to the sorted array
-int mergeSort( int* intArray, int size) {
+long long mergeSort( int* intArray, int size) {
 	int mergeAndCount(int* intArray, int leftSize, int rightSize);
 	// keep count of the number of inversions
-	int inversionCount = 0;
+	long long inversionCount = 0;
 	// check the trivial case of an array of size 1. If there is only one element, then it is already sorted.
 	if (size <= 1) {
 		return 0 ;

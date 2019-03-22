@@ -3,26 +3,50 @@
 #include <stdlib.h>
 #include "mergesort.h"
 
-#define SIZE 8
+#define SIZE 100000
 
 
 
 int main(void) {
-	int size = 8;
-	int test[SIZE] = { 5,4,1,8,7,2,6,3 };
-	int copy[SIZE] = { 5,4,1,8,7,2,6,3 };
-	int inversions = 0;
-	int i = 0;
-	inversions = mergeSort(test, size);
-	printf("%d\n", inversions);
-	//printf("%d\n\n", inversions);
-	for (i; i < size; i++) {
-		printf("%d ", test[i]);
-	}
-	printf("\n");
-	for (i = 0; i < size; i++) {
-		printf("%d ", copy[i]);
-	}
-	getchar();
+	
 
+		FILE *fptr;
+		int j = 0;
+		long int count = 0;
+		char sample[6] = { 0 };
+		char* end = &sample[6];
+		int* test = (int*)malloc(sizeof(int) * SIZE);
+
+		if ((fptr = fopen("IntegerArrayweek1.txt", "r")) == NULL) {
+			puts("Unable to open  \"IntegerArrayweek1.txt\"");
+		}
+		else {
+
+			while (sample[j] != EOF) {
+				sample[j] = fgetc(fptr);
+				if (sample[j] == '\n' || sample[j] == '\t') {
+					test[count] = strtol(sample, &end, 10);
+					count++;
+					j = 0;
+
+					continue;
+				}
+				j++;
+
+			}
+			fclose(fptr);
+		}
+
+
+		long long inversions = 0;
+		inversions = mergeSort(test, SIZE);
+		printf("%lld\n", inversions);
+
+		free(test);
+
+		 getchar();
+	
+
+	
+	
 }//end of main

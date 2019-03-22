@@ -1,3 +1,3 @@
 #pragma once
 
-int mergeSort(int * intArray, int size);
+long long mergeSort(int * intArray, int size);
